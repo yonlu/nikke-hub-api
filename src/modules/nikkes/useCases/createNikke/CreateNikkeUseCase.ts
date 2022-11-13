@@ -1,16 +1,5 @@
+import { Rarity, Burst } from "@prisma/client";
 import { prisma } from "../../../../database/prismaClient";
-
-enum Rarity {
-  R,
-  SR,
-  SSR,
-}
-
-enum Burst {
-  I,
-  II,
-  III,
-}
 
 interface ICreateNikke {
   name: string;
@@ -28,6 +17,17 @@ export class CreateNikkeUseCase {
 
     if (nikkeExists) {
       throw new Error(`Nikke with name ${name} already exists`);
+    }
+
+    const isRarityValid = Object.values(Rarity).includes(rarity as Rarity);
+    const isBurstValid = Object.values(Burst).includes(burst as Burst);
+
+    if (!isRarityValid) {
+      throw new Error(`Nikke Rarity type: ${rarity} is invalid`);
+    }
+
+    if (!isBurstValid) {
+      throw new Error(`Nikke Burst type: ${burst} is invalid`);
     }
 
     const nikke = await prisma.nikke.create({
