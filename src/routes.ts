@@ -14,6 +14,6 @@ const filterNikkesController = new FilterNikkesController();
 routes.put("/nikke/:id", updateNikkeController.handle);
 routes.post("/nikke/", createNikkeController.handle);
 routes.get("/nikke/", listNikkesController.handle);
-routes.get("/filter/:rarity", filterNikkesController.handle);
+routes.get("/nikke/filter/:id", filterNikkesController.handle);
 
 export { routes };
