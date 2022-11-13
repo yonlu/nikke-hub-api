@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --passWithNoTests",
     "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "keywords": [],
@@ -25,6 +25,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
-    "jsonwebtoken": "^8.5.1"
+    "jest": "^29.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "save-dev": "^0.0.1-security"
   }
 }
