@@ -1,14 +1,9 @@
-import { Rarity, Burst } from "@prisma/client";
 import { prisma } from "../../../../database/prismaClient";
-
-interface ICreateNikke {
-  name: string;
-  rarity: Rarity;
-  burst: Burst;
-}
+import { Nikke } from "../../domain/Nikke";
+import validations from "../util/validations";
 
 export class CreateNikkeUseCase {
-  async execute({ name, rarity, burst }: ICreateNikke) {
+  async execute({ name, info }: Nikke) {
     const nikkeExists = await prisma.nikke.findUnique({
       where: {
         name,
@@ -19,22 +14,17 @@ export class CreateNikkeUseCase {
       throw new Error(`Nikke with name ${name} already exists`);
     }
 
-    const isRarityValid = Object.values(Rarity).includes(rarity as Rarity);
-    const isBurstValid = Object.values(Burst).includes(burst as Burst);
+    validations.validateNikke(info);
 
-    if (!isRarityValid) {
-      throw new Error(`Nikke Rarity type: ${rarity} is invalid`);
-    }
-
-    if (!isBurstValid) {
-      throw new Error(`Nikke Burst type: ${burst} is invalid`);
-    }
+    const { rarity, burst, code, weapon } = info;
 
     const nikke = await prisma.nikke.create({
       data: {
         name,
         rarity,
         burst,
+        code,
+        weapon,
       },
     });
 

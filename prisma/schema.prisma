@@ -17,6 +17,8 @@ model Nikke {
   name   String @unique
   rarity Rarity
   burst  Burst
+  code Code
+  weapon  Weapon
 
   @@map("nikke")
 }
@@ -31,4 +33,21 @@ enum Rarity {
   R
   SR
   SSR
+}
+
+enum Code {
+  ZEUS
+  HSTA
+  DMTR
+  PSID
+  ANMI
+}
+
+enum Weapon {
+  AR 
+  MG
+  RL
+  SG
+  SMG
+  SR
 }
