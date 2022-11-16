@@ -1,10 +1,12 @@
 import { prisma } from "../../../../database/prismaClient";
-import { Nikke } from "../../domain/Nikke";
 import validations from "../util/validations";
 
 export class CreateNikkeUseCase {
-  async execute({ name, info }: Nikke) {
-    const nikkeExists = await prisma.nikke.findUnique({
+  async execute({ details, image }: any) {
+    const { info } = details;
+    const { name, rarity, burst, code, weapon } = info;
+
+    const nikkeExists = await prisma.nikke.findFirst({
       where: {
         name,
       },
@@ -16,8 +18,6 @@ export class CreateNikkeUseCase {
 
     validations.validateNikke(info);
 
-    const { rarity, burst, code, weapon } = info;
-
     const nikke = await prisma.nikke.create({
       data: {
         name,
@@ -25,6 +25,7 @@ export class CreateNikkeUseCase {
         burst,
         code,
         weapon,
+        image,
       },
     });
 

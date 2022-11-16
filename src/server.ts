@@ -1,15 +1,16 @@
+import "reflect-metadata";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
-import upload from "./config/upload";
 import { routes } from "./routes";
+import "./shared/container";
 
 const app = express();
-app.use(express.json());
 
-app.use("/nikke", express.static(`${upload.tmpFolder}`));
 app.use(cors());
+app.use(express.json());
 app.use(routes);
+// app.use("/uploads", express.static(`${upload.tmpFolder}/nikke`));
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {

@@ -9,7 +9,8 @@ import { UpdateNikkeImageController } from "./modules/nikkes/useCases/updateNikk
 import uploadConfig from "./config/upload";
 
 const routes = Router();
-const uploadImage = multer(uploadConfig.upload("./tmp/nikke"));
+const { nikkes } = uploadConfig;
+const uploadNikkeImage = multer(nikkes);
 
 const createNikkeController = new CreateNikkeController();
 const updateNikkeController = new UpdateNikkeController();
@@ -21,10 +22,14 @@ const filterNikkesController = new FilterNikkesController();
 routes.put("/nikke/:id", updateNikkeController.handle);
 routes.patch(
   "/nikke/:name",
-  uploadImage.single("imageFile"),
+  uploadNikkeImage.single("imageFile"),
   updateNikkeImageController.handle
 );
-routes.post("/nikke/", createNikkeController.handle);
+routes.post(
+  "/nikke/",
+  uploadNikkeImage.single("imageFile"),
+  createNikkeController.handle
+);
 routes.get("/nikke/", listNikkesController.handle);
 routes.delete("/nikke/:id", deleteNikkeController.handle);
 routes.get("/filter/:rarity", filterNikkesController.handle);
