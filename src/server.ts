@@ -4,13 +4,14 @@ import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import { routes } from "./routes";
 import "./shared/container";
+import uploadConfig from "./config/upload";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(routes);
-// app.use("/uploads", express.static(`${upload.tmpFolder}/nikke`));
+app.use("/files/nikkes", express.static(uploadConfig.nikkes.directory));
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
