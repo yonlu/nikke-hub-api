@@ -1,13 +1,26 @@
-import { prisma } from "../../../../database/prismaClient";
+import { inject, injectable } from "tsyringe";
+import INikkesRepository from "../../infra/repositories/INikkesRepository";
+import NikkeMap from "../util/NikkeMap";
 
+@injectable()
 export class FilterNikkesUseCase {
-  async execute({ rarity, burst }: any) {
-    const nikkes = await prisma.nikke.findMany({
-      where: {
-        rarity,
-      },
-    });
+  constructor(
+    @inject("NikkesRepository")
+    private readonly nikkesRepository: INikkesRepository
+  ) {}
 
-    return nikkes;
+  async execute({ rarity, burst, code, weapon }: any) {
+    const filteredNikkes = await this.nikkesRepository.filterNikkesByCriteria(
+      rarity,
+      burst,
+      code,
+      weapon
+    );
+
+    const filteredNikkesList = filteredNikkes?.map((nikke) =>
+      NikkeMap.toDTO(nikke)
+    );
+
+    return filteredNikkesList;
   }
 }

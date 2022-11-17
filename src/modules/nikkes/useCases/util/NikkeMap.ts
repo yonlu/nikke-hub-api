@@ -1,6 +1,6 @@
 import { Nikke } from "@prisma/client";
 import { instanceToInstance } from "class-transformer";
-import { IListNikkesResponseDTO } from "../dtos/IListNikkesResponseDTO";
+import { IListNikkesResponseDTO } from "../../dtos/IListNikkesResponseDTO";
 
 class NikkeMap {
   static toDTO({
