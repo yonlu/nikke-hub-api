@@ -13,6 +13,14 @@ class NikkesRepository implements INikkesRepository {
     return await this.repository.nikke.findMany();
   }
 
+  public async listSingleNikke(name: string) {
+    return await this.repository.nikke.findFirst({
+      where: {
+        name,
+      },
+    });
+  }
+
   public async findNikke(name: any) {
     return await this.repository.nikke.findFirst({
       where: name,

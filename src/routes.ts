@@ -6,6 +6,7 @@ import { FilterNikkesController } from "./modules/nikkes/useCases/filterNikkes/F
 import { ListNikkesController } from "./modules/nikkes/useCases/listNikkes/ListNikkesController";
 import { DeleteNikkeController } from "./modules/nikkes/useCases/deleteNikke/DeleteNikkeController";
 import { UpdateNikkeImageController } from "./modules/nikkes/useCases/updateNikkeImage/UpdateNikkeImageController";
+import { ListSingleNikkeController } from "./modules/nikkes/useCases/listSingleNikke/ListSingleNikkeController";
 import uploadConfig from "./config/upload";
 
 const routes = Router();
@@ -16,6 +17,7 @@ const createNikkeController = new CreateNikkeController();
 const updateNikkeController = new UpdateNikkeController();
 const updateNikkeImageController = new UpdateNikkeImageController();
 const listNikkesController = new ListNikkesController();
+const listSingleNikkeController = new ListSingleNikkeController();
 const deleteNikkeController = new DeleteNikkeController();
 const filterNikkesController = new FilterNikkesController();
 
@@ -34,5 +36,6 @@ routes.get("/nikke/", listNikkesController.handle);
 routes.delete("/nikke/:id", deleteNikkeController.handle);
 routes.get("/filter/:rarity", filterNikkesController.handle);
 routes.get("/nikke/filter/", filterNikkesController.handle);
+routes.get("/nikke/:name", listSingleNikkeController.handle);
 
 export { routes };
