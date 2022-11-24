@@ -1,0 +1,16 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Nikke Hub API Documentation",
+    "description": "API for Goddess of Victory: Nikke",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/nikke": {
+      "get": {
+        "summary": "Get all Nikkes",
+        "description": "Get all Nikkes"
+      }
+    }
+  }
+}
