@@ -13,13 +13,14 @@ datasource db {
 }
 
 model Nikke {
-  id     String @id @default(uuid())
-  name   String @unique
-  rarity Rarity
-  burst  Burst
-  code   Code
-  weapon Weapon
-  image  String
+  id        String @id @default(uuid())
+  name      String @unique
+  rarity    Rarity
+  burst     Burst
+  code      Code
+  weapon    Weapon
+  image     String
+  backstory String @default("") @db.MediumText
 
   @@map("nikke")
 }
@@ -52,4 +53,3 @@ enum Weapon {
   SMG
   SR
 }
-

@@ -3,7 +3,7 @@ import { Nikke } from "../../domain/Nikke";
 import validations from "../util/validations";
 
 export class UpdateNikkeUseCase {
-  async execute({ id, name, info }: Nikke) {
+  async execute({ id, name, info, backstory }: Nikke) {
     const nikkeExists = await prisma.nikke.findUnique({
       where: {
         id,
@@ -29,6 +29,7 @@ export class UpdateNikkeUseCase {
           burst,
           code,
           weapon,
+          backstory,
         },
       });
 

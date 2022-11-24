@@ -11,6 +11,7 @@ class NikkeMap {
     code,
     weapon,
     image,
+    backstory,
   }: Nikke): IListNikkesResponseDTO {
     const nikke = instanceToInstance({
       id,
@@ -20,6 +21,7 @@ class NikkeMap {
       code,
       weapon,
       image: `http://localhost:3000/files/nikkes/${image}`, // refactor this sh*t
+      backstory,
     });
 
     return nikke;

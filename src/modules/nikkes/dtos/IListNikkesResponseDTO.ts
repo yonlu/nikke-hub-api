@@ -6,4 +6,5 @@ export interface IListNikkesResponseDTO {
   code: string;
   weapon: string;
   image: string;
+  backstory: string;
 }

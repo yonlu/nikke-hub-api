@@ -4,7 +4,7 @@ import { UpdateNikkeUseCase } from "./UpdateNikkeUseCase";
 export class UpdateNikkeController {
   async handle(request: Request, response: Response) {
     const {
-      body: { name, info },
+      body: { name, info, backstory },
       params: { id },
     } = request;
     const updateNikkeUseCase = new UpdateNikkeUseCase();
@@ -12,6 +12,7 @@ export class UpdateNikkeController {
       id,
       name,
       info,
+      backstory,
     });
 
     return response.json(result);
