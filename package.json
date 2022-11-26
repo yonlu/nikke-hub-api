@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "clean": "tsc --build --clean"
   },
   "keywords": [],
   "author": "",
