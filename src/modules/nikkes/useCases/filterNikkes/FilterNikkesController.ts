@@ -5,8 +5,9 @@ import { FilterNikkesUseCase } from "./FilterNikkesUseCase";
 export class FilterNikkesController {
   async handle(request: Request, response: Response) {
     const { rarity, burst, code, weapon } = request.query;
-    const createNikkeUseCase = container.resolve(FilterNikkesUseCase);
-    const result = await createNikkeUseCase.execute({
+
+    const filterNikkesUseCase = container.resolve(FilterNikkesUseCase);
+    const result = await filterNikkesUseCase.execute({
       rarity,
       burst,
       code,

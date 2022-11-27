@@ -5,9 +5,9 @@ export default interface INikkesRepository {
   listSingleNikke: (name: string) => Promise<Nikke | null>;
   findNikke: (name: string) => Promise<Nikke | null>;
   filterNikkesByCriteria: (
-    rarity?: Rarity,
-    burst?: Burst,
-    code?: Code,
-    weapon?: Weapon
+    rarity: Rarity[],
+    burst: Burst[],
+    code: Code[],
+    weapon: Weapon[]
   ) => Promise<Nikke[] | null>;
 }

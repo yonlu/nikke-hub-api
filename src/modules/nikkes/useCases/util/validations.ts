@@ -16,4 +16,15 @@ export default class validations {
       throw new Error(`Nikke type ${value} is invalid`);
     }
   }
+
+  static translateStringArrayToEnumValues<E, K extends string>(
+    values: string[],
+    enumerable: { [key in K]: E }
+  ): E[] {
+    const filteredValues: E[] = [];
+    values?.forEach((val: string) => {
+      if (val in enumerable) filteredValues.push(enumerable[val as K] as E);
+    });
+    return filteredValues;
+  }
 }
