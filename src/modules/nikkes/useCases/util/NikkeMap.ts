@@ -20,7 +20,7 @@ class NikkeMap {
       burst,
       code,
       weapon,
-      image: `http://localhost:3000/files/nikkes/${image}`, // refactor this sh*t
+      image: `${process.env.API_URL}/files/nikkes/${image}`, // refactor this sh*t
       backstory,
     });
 
