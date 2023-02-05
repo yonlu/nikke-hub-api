@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import INikkesRepository from "../../infra/repositories/INikkesRepository";
 import NikkeMap from "../util/NikkeMap";
+import { sortNikkesByName } from "../util/sortNikkesByName";
 
 @injectable()
 export class FilterNikkesUseCase {
@@ -20,6 +21,10 @@ export class FilterNikkesUseCase {
     const filteredNikkesList = filteredNikkes?.map((nikke) =>
       NikkeMap.toDTO(nikke)
     );
+
+    if (filteredNikkesList) {
+      sortNikkesByName(filteredNikkesList);
+    }
 
     return filteredNikkesList;
   }
